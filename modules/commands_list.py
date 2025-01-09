@@ -1,10 +1,10 @@
-def CommandsListGeneration(count):
+def commands_list_generation(count):
     command_list = list()
     for num in range(1, count+1):
         command_list.append(num)
     return command_list
 
-def WaitingInputCommand(list):
+def waiting_input_command(list):
     command = 0
     while command not in list:
         try:

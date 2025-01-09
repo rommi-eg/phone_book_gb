@@ -1,5 +1,5 @@
-from modules.UserInterface import WelcomePhoneBook
+from modules.userInterface import welcome_phone_book
 
 
 if __name__ in '__main__':
-    WelcomePhoneBook()
+    welcome_phone_book()

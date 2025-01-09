@@ -1,7 +1,7 @@
-from modules.CommandsList import CommandsListGeneration, WaitingInputCommand
-from modules.DatabaseManager import DatabaseAppend, DatabaseRead, DatabaseSearch, DeleteFromeDatabase, DatabaseEdit
+from modules.commands_list import commands_list_generation, waiting_input_command
+from modules.database_manager import database_append, database_read, database_search, delete_from_database, database_edit
 
-def WelcomePhoneBook():
+def welcome_phone_book():
     print('\nДобро пожаловать! в телефонный справочник.\n'
           '     --------------------------------\n'
           '     | Выберете команду:            |\n'
@@ -13,15 +13,15 @@ def WelcomePhoneBook():
           '     |   6 - выход                  |\n'
           '     --------------------------------\n')
     
-    command = WaitingInputCommand(CommandsListGeneration(count=6))
+    command = waiting_input_command(commands_list_generation(count=6))
 
     if command == 1:
-        DatabaseAppend()
+        database_append()
     elif command == 2:
-        DatabaseRead()
+        database_read()
     elif command == 3:
-        DatabaseSearch()
+        database_search()
     elif command == 4:
-        DatabaseEdit()
+        database_edit()
     elif command == 5:
-        DeleteFromeDatabase()
+        delete_from_database()

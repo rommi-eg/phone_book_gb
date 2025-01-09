@@ -1,5 +1,5 @@
-from modules.CommandsList import CommandsListGeneration, WaitingInputCommand
-from modules.InputData import InputName, InputSurname, InputPhone, InputAddress
+from modules.commands_list import commands_list_generation, waiting_input_command
+from modules.input_data import input_name, input_surname, input_phone, input_address
 import os
 
 def rename(name):
@@ -7,7 +7,7 @@ def rename(name):
     name = name.replace(';', ' ')
     return name
 
-def SelectionDatabase():
+def selection_database():
     path = os.path.join(os.getcwd(), 'base/')
     print('---------------------------------\n'
           'В какой базе будем работать?\n'
@@ -16,7 +16,7 @@ def SelectionDatabase():
           '2 - во второй:\n'
           '3 - выход\n'
           '---------------------------------\n')  
-    command = WaitingInputCommand(CommandsListGeneration(3))
+    command = waiting_input_command(commands_list_generation(3))
     if command == 1: 
         base = f'{path}FirstData.csv'
     elif command == 2: 
@@ -24,7 +24,7 @@ def SelectionDatabase():
     return base
 
 
-def ReadingDataFromFile(base):
+def reading_data_from_file(base):
     users = list()
     with open(file=base, mode='r', encoding='utf=8') as f:
         line = f.readlines()
@@ -36,7 +36,7 @@ def ReadingDataFromFile(base):
     return users
 
 
-def SearchDatabase(users):
+def search_database(users):
     print('---------------------------------\n'
           'По каким параметрам будем искать?\n'
           '---------------------------------\n')
@@ -45,15 +45,15 @@ def SearchDatabase(users):
           '3 - по ардесу:\n'
           '4 - выход\n'
           '---------------------------------\n') 
-    command = WaitingInputCommand(CommandsListGeneration(4))
+    command = waiting_input_command(commands_list_generation(4))
     if command == 1: 
-        name = InputName()
-        surname = InputSurname()
+        name = input_name()
+        surname = input_surname()
         filter = f'{name} {surname}'
     elif command == 2: 
-        filter = str(InputPhone())
+        filter = str(input_phone())
     elif command == 3: 
-        filter = InputAddress()
+        filter = input_address()
     entries = list()
     for user in users:
         if filter.lower() in rename(user).lower():
@@ -74,7 +74,7 @@ def SearchDatabase(users):
         return 0
 
     
-def EditDatabase(list):
+def edit_database(list):
     print('---------------------------------\n'
           'Какие данные будем редактировать?\n'
           '---------------------------------\n')
@@ -84,13 +84,13 @@ def EditDatabase(list):
           '3 - ардес:\n'
           '4 - выход\n'
           '---------------------------------\n') 
-    command = WaitingInputCommand(CommandsListGeneration(4))
+    command = waiting_input_command(commands_list_generation(4))
     if command == 1:
-        list[0] = InputName()
+        list[0] = input_name()
     elif command == 2:
-        list[1] = InputSurname()
+        list[1] = input_surname()
     elif command == 3:
-        list[2] = InputPhone()
+        list[2] = input_phone()
     elif command == 4:
-        list[3] = InputAddress()
+        list[3] = input_address()
     return list

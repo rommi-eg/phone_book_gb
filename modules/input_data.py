@@ -1,4 +1,4 @@
-def InputName():
+def input_name():
     name = input('Ввведите имя: ')
     if name:
         return name
@@ -6,7 +6,7 @@ def InputName():
         print('Нужно указать имя')  
         return exit()
     
-def InputSurname():
+def input_surname():
     surname = input('Ввведите фамилию: ')
     if surname:
         return surname
@@ -14,14 +14,14 @@ def InputSurname():
         print('Нужно указать фамилию')      
         return exit()
 
-def InputPhone():
+def input_phone():
     try: 
         return int(input('Ввведите номер телефона: '))
     except: 
         print('Номер телефона должен состоять из цифр')
         return exit()
 
-def InputAddress():
+def input_address():
     address =  input('Ввведите адрес: ')
     if address:
         return address

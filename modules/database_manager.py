@@ -1,13 +1,13 @@
-from modules.InputData import InputName, InputSurname, InputPhone, InputAddress
-from modules.DatabaseProcessing import SearchDatabase, SelectionDatabase, EditDatabase, ReadingDataFromFile
+from modules.input_data import input_name, input_surname, input_phone, input_address
+from modules.database_processing import search_database, selection_database, edit_database, reading_data_from_file
 
 
-def DatabaseAppend():
-    name = InputName()
-    surname = InputSurname()
-    phone = InputPhone()
-    address = InputAddress()
-    base = SelectionDatabase()
+def database_append():
+    name = input_name()
+    surname = input_surname()
+    phone = input_phone()
+    address = input_address()
+    base = selection_database()
     if 'FirstData.csv' in base:
         variant = f'{name}\n{surname}\n{phone}\n{address}\n\n'          
     elif 'SecondData.csv' in base:
@@ -17,23 +17,23 @@ def DatabaseAppend():
     print('База данных дополнена!')
 
 
-def DatabaseRead():
-    base = SelectionDatabase()
+def database_read():
+    base = selection_database()
     with open(file=base, mode='r', encoding='utf-8') as f:
         data = f.readlines()
     print('\n',*data)
         
 
-def DatabaseSearch():
-    base =  SelectionDatabase()
-    _list = ReadingDataFromFile(base)
-    SearchDatabase(_list)
+def database_search():
+    base =  selection_database()
+    _list = reading_data_from_file(base)
+    selection_database(_list)
 
 
-def DeleteFromeDatabase():
-    base =  SelectionDatabase()
-    _list = ReadingDataFromFile(base)
-    users = SearchDatabase(_list)
+def delete_from_database():
+    base =  selection_database()
+    _list = reading_data_from_file(base)
+    users = search_database(_list)
     n = int(input('Выберите номер: '))
     new = []
     for user in _list:
@@ -45,20 +45,20 @@ def DeleteFromeDatabase():
     print('Запись удалена')
 
 
-def DatabaseEdit():
-    base =  SelectionDatabase()
-    _list = ReadingDataFromFile(base)
-    users = SearchDatabase(_list)
+def database_edit():
+    base = search_database()
+    _list = reading_data_from_file(base)
+    users = search_database(_list)
     n = int(input('Выберите номер: '))
     new = []
     for user in _list:
         if users[n-1] not in user:
             new.append(user)
     if 'FirstData.csv' in base:
-        edit = EditDatabase(users[n-1].split())
+        edit = edit_database(users[n-1].split())
         variant = f'{edit[0]}\n{edit[1]}\n{edit[2]}\n{edit[3]}\n\n'  
     elif 'SecondData.csv' in base:
-        edit = EditDatabase(users[n-1].split(';'))
+        edit = edit_database(users[n-1].split(';'))
         variant = f'{edit[0]};{edit[1]};{edit[2]};{edit[3]}\n\n'
     new.append(variant)
     with open(file=base, mode='w', encoding='utf-8') as f:
